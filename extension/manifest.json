@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Messenger Sticker Downloader",
+  "version": "2.0",
+  "description": "右鍵下載 Facebook Messenger 聊天室中的貼圖！",
+  "permissions": [
+    "contextMenus",
+    "downloads",
+    "webRequest"
+  ],
+  "host_permissions": [
+    "https://*.facebook.com/*",
+    "https://*.messenger.com/*",
+    "https://*.fbcdn.net/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.facebook.com/*",
+        "https://*.messenger.com/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}
