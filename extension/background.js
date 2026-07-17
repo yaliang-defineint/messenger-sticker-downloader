@@ -107,7 +107,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             if (extension === 'jpg') mimeType = 'image/jpeg';
             if (extension === 'png') mimeType = 'image/png';
 
-            // 動態補入快取，下次就不需要再 fetch
             stickerCache.set(cleanUrl, {
               arrayBuffer: finalArrayBuffer,
               extension: extension,

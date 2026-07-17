@@ -30,7 +30,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const { binaryData, mimeType, filename } = request;
     console.log(`[前端下載] 正在下載: ${filename} (${mimeType})`);
 
-    // 1. 將陣列轉回 Uint8Array，再包裝成 Blob
     const uint8Array = new Uint8Array(binaryData);
     const blob = new Blob([uint8Array], { type: mimeType });
     const blobUrl = URL.createObjectURL(blob);
@@ -43,7 +42,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     downloadLink.click();
     document.body.removeChild(downloadLink);
 
-    // 3. 釋放記憶體
     URL.revokeObjectURL(blobUrl);
     console.log("下載完畢！");
   }
