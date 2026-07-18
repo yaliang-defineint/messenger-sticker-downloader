@@ -21,7 +21,7 @@
 
 ### 使用 chrome web store
 
-還沒成功發布...
+可以到 [Chrome Web Store](https://chromewebstore.google.com/detail/messenger-sticker-downloa/jbfollfgeikfojphpgdnldmpeelomifb) 加入此功能來使用
 
 ## 使用須知
 
