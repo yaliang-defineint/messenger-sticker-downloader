@@ -1,4 +1,4 @@
-console.log("Messenger 貼圖下載器已成功載入！");
+console.log("[Messenger Sticker Downloader] 下載器已載入！");
 
 let lastRightClickedElement = null;
 
@@ -7,42 +7,25 @@ document.addEventListener("contextmenu", (event) => {
 }, true);
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  if (request.action === "getClickedStickerUrl") {
+  if (request.action === "getStickerUrl") {
     if (!lastRightClickedElement) {
       sendResponse({ url: null });
       return;
     }
 
     const stickerDiv = lastRightClickedElement.closest('div[style*="background-image"]');
-    if (stickerDiv) {
-      const style = stickerDiv.getAttribute('style');
-      const match = style.match(/url\(['"]?((?:blob:)?https?:\/\/[^'"]+)['"]?\)/);
-      if (match && match[1]) {
-        let imageUrl = match[1].replace(/&amp;/g, '&');
-        sendResponse({ url: imageUrl });
-        return;
-      }
+    if (!stickerDiv) {
+      sendResponse({ url: null });
+      return;
     }
-    sendResponse({ url: null });
-  }
 
-  if (request.action === "executeDownload") {
-    const { binaryData, mimeType, filename } = request;
-    console.log(`[前端下載] 正在下載: ${filename} (${mimeType})`);
-
-    const uint8Array = new Uint8Array(binaryData);
-    const blob = new Blob([uint8Array], { type: mimeType });
-    const blobUrl = URL.createObjectURL(blob);
-
-    const downloadLink = document.createElement('a');
-    downloadLink.href = blobUrl;
-    downloadLink.download = filename;
+    const style = stickerDiv.getAttribute('style');
+    const match = style.match(/url\(['"]?((?:blob:)?https?:\/\/[^'"]+)['"]?\)/);
     
-    document.body.appendChild(downloadLink);
-    downloadLink.click();
-    document.body.removeChild(downloadLink);
-
-    URL.revokeObjectURL(blobUrl);
-    console.log("下載完畢！");
+    if (match && match[1]) {
+      sendResponse({ url: match[1].replace(/&amp;/g, '&') });
+    } else {
+      sendResponse({ url: null });
+    }
   }
 });

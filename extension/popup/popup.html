@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messenger Toolkit</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="title">Messenger Sticker Downloader</div>
+    <div class="version">v2.0.0</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">貼圖下載設定</div>
+    <div class="setting-item">
+      <span class="label">預設儲存格式</span>
+      <div class="segmented-control">
+        <input type="radio" id="formatWebp" name="format" value="webp" checked>
+        <label for="formatWebp">WebP</label>
+        
+        <input type="radio" id="formatGif" name="format" value="gif">
+        <label for="formatGif">GIF</label>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
