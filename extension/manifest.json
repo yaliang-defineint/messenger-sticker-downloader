@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Messenger Sticker Downloader",
-  "version": "2.0.0",
+  "version": "2.0",
   "description": "右鍵下載 Facebook Messenger 聊天室中的貼圖 (支援 GIF 轉檔)",
   "permissions": [
     "contextMenus",
@@ -17,7 +17,17 @@
     "service_worker": "background.js"
   },
   "action": {
-    "default_popup": "popup/popup.html"
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/ICON_16.png",
+      "48": "icons/ICON_48.png",
+      "128": "icons/ICON_128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/ICON_16.png",
+    "48": "icons/ICON_48.png",
+    "128": "icons/ICON_128.png"
   },
   "content_scripts": [
     {
